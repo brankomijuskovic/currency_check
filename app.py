@@ -10,6 +10,6 @@ response = requests.request("GET", api_url + api_key)
 result = 1 / float(json.loads(response.text)['rates']['CHF'])
 
 while True:
-    print(round(result, 4))
+    print(round(result, 5))
     time.sleep(3600)
 
