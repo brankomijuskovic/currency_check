@@ -12,5 +12,5 @@ result = 1 / float(json.loads(response.text)['rates']['CHF'])
 
 while True:
     print(round(result, 5))
-    time.sleep(sleep_time)
+    time.sleep(int(sleep_time))
 
