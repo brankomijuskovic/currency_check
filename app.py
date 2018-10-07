@@ -14,8 +14,14 @@ response = requests.request("GET", api_url + api_key)
 print(response.text)
 result = 1 / float(json.loads(response.text)['rates']['CHF'])
 
-client = InfluxDBClient(influxdb_host, 8086, 'root', 'root', 'chf_data')
-client.create_database('chf_data')
+while True:
+    try:
+        client = InfluxDBClient(influxdb_host, 8086, 'root', 'root', 'chf_data')
+        client.create_database('chf_data')
+        break
+    except:
+        print("Can't connect to InfluxDB, sleeping.")
+        time.sleep(5)
 
 
 while True:
