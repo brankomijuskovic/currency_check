@@ -1,6 +1,7 @@
 import json
 import requests
 import time
+import datetime
 import os
 from influxdb import InfluxDBClient
 
@@ -16,7 +17,7 @@ while True:
         client.create_database('chf_data')
         break
     except:
-        print("Can't connect to InfluxDB, sleeping.")
+        print("{} - Can't connect to InfluxDB, sleeping.".format(datetime.datetime.now()))
         time.sleep(5)
 
 
