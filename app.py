@@ -8,7 +8,7 @@ api_url = 'http://data.fixer.io/api/latest?access_key='
 api_key = os.environ['API_KEY']
 sleep_time = os.environ['SLEEP']
 influxdb_host = os.environ['INFLUXDB_HOST']
-
+print(api_key)
 
 response = requests.request("GET", api_url + api_key)
 print(response.text)
