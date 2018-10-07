@@ -16,14 +16,19 @@ while True:
         client = InfluxDBClient(influxdb_host, 8086, 'root', 'root', 'chf_data')
         client.create_database('chf_data')
         break
-    except:
+    except Exception as err:
         print("{} - Can't connect to InfluxDB, sleeping.".format(datetime.datetime.now()))
+        print(err)
         time.sleep(5)
 
 
 while True:
-    response = requests.request("GET", api_url + api_key)
-    result = 1 / float(json.loads(response.text)['rates']['CHF'])
-    print(result)
-    client.write_points([{"measurement": "CHF", "fields": {"value": round(result, 5)}}])
-    time.sleep(int(sleep_time))
+    try:
+        response = requests.request("GET", api_url + api_key)
+        result = 1 / float(json.loads(response.text)['rates']['CHF'])
+        print(result)
+        client.write_points([{"measurement": "CHF", "fields": {"value": round(result, 5)}}])
+        time.sleep(int(sleep_time))
+    except Exception as err:
+        print("{} - Something went wrong. {}".format(datetime.datetime.now(), err))
+        time.sleep(5)
