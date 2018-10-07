@@ -11,6 +11,7 @@ influxdb_host = os.environ['INFLUXDB_HOST']
 
 
 response = requests.request("GET", api_url + api_key)
+print(response.text)
 result = 1 / float(json.loads(response.text)['rates']['CHF'])
 
 client = InfluxDBClient(influxdb_host, 8086, 'root', 'root', 'chf_data')

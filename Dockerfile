@@ -1,4 +1,4 @@
-FROM python:3.6
+FROM python:3.6-alpine
 LABEL maintainer="ipcurl"
 ENV SLEEP=3600
 ENV INFLUXDB_HOST=influxdb
