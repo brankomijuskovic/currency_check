@@ -1,0 +1,21 @@
+version: '3'
+services:
+  currency_check:
+    image: enemy/currency_check:latest
+    environment:
+      - API_KEY=YOUR_API_KEY
+      - SLEEP=3600
+  influxdb:
+    image: influxdb
+    volumes:
+      - "influxdb_vol:/var/lib/influxdb"
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - "grafana_vol:/var/lib/grafana"
+volumes:
+  grafana_vol:
+  influxdb_vol:
+
