@@ -12,8 +12,8 @@ influxdb_host = os.environ['INFLUXDB_HOST']
 
 try:
     api_key = os.environ['API_KEY']
-except Exception:
-    print("No API key provided, exiting.")
+except Exception as err:
+    print("No API key provided, exiting. {}".format(err))
     sys.exit(1)
 
 while True:
